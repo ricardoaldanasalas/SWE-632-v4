@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Games Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div>
+        <h1><a href="index.html" class="btn">🎮</a>Mini Games Hub</h1>
+        <p>SWE-632 class Spring 2025</p>
+        <p>Play fun, simple games directly in your browser! Choose a game below:</p>
+        </div>
+        <div class="auth-buttons">
+        <a href="login.html"class="btn">Login</a>
+        <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+        </header>
+
+    <div class="game-container">
+        <div class="game-card">
+            <img src="assets/tic-tac-toe.png" alt="Tic-Tac-Toe">
+            <h2>Tic-Tac-Toe</h2>
+            <p>Challenge a friend or play against AI!</p>
+            <a href="games/tic-tac-toe.html" class="play-btn">Play Now</a>
+            <button class="instruction-btn" onclick="openModal('tic-tac-toe')">How to Play</button>
+        </div>
+
+        <div class="game-card">
+            <img src="assets/rock-paper-scissors.jpg" alt="Rock-Paper-Scissors">
+            <h2>Rock-Paper-Scissors</h2>
+            <p>Test your luck against the computer!</p>
+            <a href="games/rock-paper-scissors.html" class="play-btn">Play Now</a>
+            <button class="instruction-btn" onclick="openModal('rock-paper-scissors')">How to Play</button>
+        </div>
+
+        <div class="game-card">
+            <img src="assets/matching-game.JPG" alt="Matching-Game">
+            <h2>Matching-Game</h2>
+            <p>Match all the tiles as fast as you can!</p>
+            <a href="games/matching-game.html" class="play-btn">Play Now</a>
+            <button class="instruction-btn" onclick="openModal('matching-game')">How to Play</button>
+        </div>
+    </div>
+
+    <!-- Instruction Modal -->
+    <div id="instruction-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Mini Games Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="js/instructions.js"></script>
+
+</body>
+</html>
