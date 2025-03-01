@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe</title>
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -14,10 +14,41 @@
             <p>Play fun, simple games directly in your browser! Click the Controller to go back to game selection.</p>
             </div>
     </header>
+    <h1>Tic Tac Toe</h1>
+    <div class="tic-tac-toe-container">
+        <div id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+    </div>
 
-    <h1>Tic-Tac-Toe</h1>
-    <div class="board" id="board"></div>
-    <button onclick="restartGame()">Restart Game</button>
+    <p id="status">Player X's turn</p>
+    <button id="reset">Reset Game</button>
+
+    <!-- Win Modal for Tic-Tac-Toe -->
+    <div id="ticTacToeWinModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p id="ticTacToeWinMessage"></p>
+            <button id="playAgain" onclick="resetTicTacToeGame()">Play Again</button>
+            <button id="goHome" onclick="goHome()">Go to Homepage</button>
+        </div>
+    </div>
+
+    <!-- Reset Confirmation Modal for Tic-Tac-Toe -->
+    <div id="ticTacToeResetModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p>Are you sure you want to reset the game?</p>
+            <button id="confirmTicTacToeReset">Yes, Reset</button>
+            <button id="cancelTicTacToeReset">No, Keep Playing</button>
+        </div>
+    </div>
     <script src="../js/tic-tac-toe.js"></script>
 </body>
 </html>

@@ -71,20 +71,32 @@ const tooltipList = [...tooltipTriggerList].map(
 
 // EVENT BINDINGS
 // click on restart
-restartBtn.addEventListener(`click`, (e) => {
-  // console.log(`restart button clicked`);
+restartBtn.addEventListener(`click`, () => {
+  document.getElementById("matchingGameResetModal").style.display = "flex"; // Show modal
+});
+
+// Handle modal confirmation
+document.getElementById("confirmMatchingGameReset").addEventListener("click", () => {
+  resetMatchingGame();
+  document.getElementById("matchingGameResetModal").style.display = "none"; // Hide modal
+});
+
+// Handle modal cancel
+document.getElementById("cancelMatchingGameReset").addEventListener("click", () => {
+  document.getElementById("matchingGameResetModal").style.display = "none"; // Hide modal
+});
+
+// Reset game function
+function resetMatchingGame() {
   tileApp.resetTiles();
-  // render tiles
   renderTiles(grid, tileApp.tiles);
-  // kill and reset timer
   clearInterval(nIntervId);
   nIntervId = null;
   timer = 0;
   timeDisplay.textContent = 0;
-  // reset guesses
   guesses = 0;
   guessesDisplay.textContent = guesses;
-});
+};
 
 // click on tiles
 grid.addEventListener(`click`, (e) => {

@@ -16,10 +16,32 @@
     </header>
 
     <h1>Rock-Paper-Scissors</h1>
+    <p>First to 5 wins!</p>
     <button onclick="playGame('rock')">Rock</button>
     <button onclick="playGame('paper')">Paper</button>
     <button onclick="playGame('scissors')">Scissors</button>
+
     <h2 id="result"></h2>
+    <p>Player Score: <span id="playerScore">0</span></p>
+    <p>Computer Score: <span id="computerScore">0</span></p>
+    <button id="rpsResetButton">Reset Game</button>
+
+    <div id="rpsWinModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p id="rpsWinMessage"></p>
+            <button id="rpsPlayAgain" onclick="resetGame()">Play Again</button>
+            <button id="rpsGoHome" onclick="goHome()">Go to Homepage</button>
+        </div>
+    </div>
+
+    <div id="rpsResetModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p>Are you sure you want to reset the game?</p>
+            <button id="confirmReset">Yes, Reset</button>
+            <button id="cancelReset">No, Keep Playing</button>
+        </div>
+    </div>
+
     <script src="../js/rock-paper-scissors.js"></script>
 </body>
 </html>

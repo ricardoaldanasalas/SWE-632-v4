@@ -98,40 +98,14 @@ footer {
     margin: 10px 5px;
 }
 
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 50%;
-    text-align: center;
-}
-
-.close {
-    color: red;
-    float: right;
-    font-size: 24px;
-    cursor: pointer;
-}
-
+/* Authentication Buttons */
 .auth-buttons {
     position: absolute;
     top: 20px;
     right: 20px;
- }
- .auth-buttons .btn {
+}
+
+.auth-buttons .btn {
     background-color: white;
     color: #007bff;
     padding: 10px 15px;
@@ -139,8 +113,344 @@ footer {
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
- }
- .auth-buttons .btn:hover {
+}
+
+.auth-buttons .btn:hover {
     background-color: #0056b3;
     color: white;
- }
+}
+
+/* Tic Tac Toe Styles */
+.tic-tac-toe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid black;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cell.taken {
+    cursor: not-allowed;
+}
+
+#status {
+    font-size: 1.2em;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#reset {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#reset:hover {
+    background-color: #0056b3;
+}
+
+/* Tic Tac Toe Modal (Ensure Centering & Display) */
+.tic-tac-toe-modal {
+    display: none; /* Hide initially */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears on top */
+}
+
+/* Modal Content Styling */
+.tic-tac-toe-modal-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    width: 300px; /* Set a proper width */
+}
+
+/* Fix: Ensure Tic-Tac-Toe Buttons Work */
+.tic-tac-toe-modal-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Buttons for Tic-Tac-Toe */
+#playAgain {
+    background-color: #007bff;
+    color: white;
+}
+
+#playAgain:hover {
+    background-color: #0056b3;
+}
+
+#goHome {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+#goHome:hover {
+    background-color: #b30000;
+}
+
+/* Rock-Paper-Scissors Modal */
+.rps-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Rock-Paper-Scissors Modal Content */
+.rps-modal-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    width: 300px;
+}
+
+/* Buttons for Rock-Paper-Scissors */
+.rps-modal-content button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Play Again Button */
+#rpsPlayAgain {
+    background-color: #007bff;
+    color: white;
+}
+
+#rpsPlayAgain:hover {
+    background-color: #0056b3;
+}
+
+/* Go Home Button */
+#rpsGoHome {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+#rpsGoHome:hover {
+    background-color: #b30000;
+}
+
+/* Reset Confirmation Modal */
+#rpsResetModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#rpsResetModal .rps-modal-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    width: 300px;
+}
+
+#rpsResetModal button {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+
+/* Confirm Reset Button */
+#confirmReset {
+    background-color: #007bff;
+    color: white;
+}
+
+#confirmReset:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Cancel Reset Button */
+#cancelReset {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+#cancelReset:hover {
+    background-color: #b30000;
+    transform: scale(1.1);
+}
+
+/* Reset Confirmation Modal for Tic-Tac-Toe */
+#ticTacToeResetModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+#ticTacToeResetModal .rps-modal-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    width: 300px;
+}
+
+/* Buttons inside the modal */
+#ticTacToeResetModal button {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+
+/* Confirm Reset Button */
+#confirmTicTacToeReset {
+    background-color: #007bff;
+    color: white;
+}
+
+#confirmTicTacToeReset:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Cancel Reset Button */
+#cancelTicTacToeReset {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+#cancelTicTacToeReset:hover {
+    background-color: #b30000;
+    transform: scale(1.1);
+}
+
+/* Win Modal */
+#ticTacToeWinModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal is on top */
+}
+
+.rps-modal-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    width: 300px;
+}
+
+/* Win Modal Buttons */
+.rps-modal-content button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Play Again Button */
+#playAgain {
+    background-color: #007bff;
+    color: white;
+}
+
+#playAgain:hover {
+    background-color: #0056b3;
+}
+
+/* Go Home Button */
+#goHome {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+#goHome:hover {
+    background-color: #b30000;
+}
