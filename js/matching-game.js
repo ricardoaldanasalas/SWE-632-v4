@@ -1,168 +1,115 @@
-/* This code was used from the public repo of https://github.com/bravomiguel/tile-matching-game */
-import { TileApp } from './TileManager.js';
-import { renderTiles } from './DOM-methods.js';
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-
-//INITIAL STATE
-// timer seconds counter
+// Game Variables
 let timer = 0;
-// guesses counter
 let guesses = 0;
-// Pull data in from tile arrangement object
-const icons = [
-  `fa-truck-fast`,
-  `fa-camera-retro`,
-  `fa-mug-hot`,
-  `fa-lemon`,
-  `fa-flask`,
-  `fa-tree`,
-  `fa-rocket`,
-  `fa-robot`,
-];
-const tileApp = new TileApp(icons);
-// variable to store interval id for time display
 let nIntervId = null;
-// console.log(nIntervId);
+const timeDisplay = document.getElementById("timeDisplay");
+const guessesDisplay = document.getElementById("guessesDisplay");
+const restartBtn = document.getElementById("restartBtn");
 
-// ELEMENT SELECTION
-// time display
-const timeDisplay = document.getElementsByClassName(`time`)[0];
-// guesses display
-const guessesDisplay = document.getElementsByClassName(`guesses`)[0];
-// restart button
-const restartBtn = document.getElementsByClassName(`restart-btn`)[0];
-// grid
-const grid = document.getElementsByClassName(`tile-grid`)[0];
-// modal time value
-const modalTimeValue = document.getElementsByClassName(`modal-time-value`)[0];
-// modal guesses value
-const modalGuessesValue =
-  document.getElementsByClassName(`modal-guesses-value`)[0];
-// play again button
-const playAgainBtn = document.getElementsByClassName(`play-again-btn`)[0];
+const gameBoard = document.getElementById("gameBoard");
 
-// INITIAL ACTIONS
-// render timer display
-timeDisplay.textContent = timer;
-// render guesses display
-guessesDisplay.textContent = guesses;
-// render tiles in grid
-renderTiles(grid, tileApp.tiles);
+// Reset Confirmation Modal Elements
+const matchingGameResetModal = document.getElementById("matchingGameResetModal");
+const confirmMatchingGameResetButton = document.getElementById("confirmMatchingGameReset");
+const cancelMatchingGameResetButton = document.getElementById("cancelMatchingGameReset");
 
-// HELPER FUNCTIONS
-// time delay function
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+// Tie Symbols (Matching Pairs)
+const tileSymbols = ["🍎", "🍌", "🍇", "🍓", "🍍", "🥑", "🥕", "🍉"];
+let tiles = [...tileSymbols, ...tileSymbols]; // Duplicate for pairs
+
+// Shufle Tiles
+function shuffleTiles() {
+    tiles.sort(() => Math.random() - 0.5);
 }
-// enable popovers
-const popoverTriggerList = document.querySelectorAll(
-  '[data-bs-toggle="popover"]',
-);
-const popoverList = [...popoverTriggerList].map(
-  (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl),
-);
-// enable tooltips
-const tooltipTriggerList = document.querySelectorAll(
-  '[data-bs-toggle="tooltip"]',
-);
-const tooltipList = [...tooltipTriggerList].map(
-  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl),
-);
 
-// EVENT BINDINGS
-// click on restart
-restartBtn.addEventListener(`click`, () => {
-  document.getElementById("matchingGameResetModal").style.display = "flex"; // Show modal
-});
+// Render Tile on Game Board
+function renderTiles() {
+    gameBoard.innerHTML = "";
+    shuffleTiles();
 
-// Handle modal confirmation
-document.getElementById("confirmMatchingGameReset").addEventListener("click", () => {
-  resetMatchingGame();
-  document.getElementById("matchingGameResetModal").style.display = "none"; // Hide modal
-});
+    tiles.forEach((symbol, index) => {
+        const tile = document.createElement("div");
+        tile.classList.add("tile");
+        tile.dataset.symbol = symbol;
+        tile.dataset.index = index;
+        tile.textContent = "❔"; 
+        tile.addEventListener("click", handleTileClick);
+        gameBoard.appendChild(tile);
+    });
+}
 
-// Handle modal cancel
-document.getElementById("cancelMatchingGameReset").addEventListener("click", () => {
-  document.getElementById("matchingGameResetModal").style.display = "none"; // Hide modal
-});
-
-// Reset game function
-function resetMatchingGame() {
-  tileApp.resetTiles();
-  renderTiles(grid, tileApp.tiles);
-  clearInterval(nIntervId);
-  nIntervId = null;
-  timer = 0;
-  timeDisplay.textContent = 0;
-  guesses = 0;
-  guessesDisplay.textContent = guesses;
-};
-
-// click on tiles
-grid.addEventListener(`click`, (e) => {
-  // get tile element clicked on
-  const { target } = e;
-  // get tile element id
-  const targetId = target.getAttribute(`id`);
-  // use id to get relevant tile data object
-  const tile = tileApp.findTileById(targetId);
-  // flip tile up, if face down
-  if (!tile.faceUp) {
-    tileApp.flipTileUp(tile);
-    guesses += 1;
-    guessesDisplay.textContent = guesses;
-  }
-
-  // render tiles
-  renderTiles(grid, tileApp.tiles);
-
-  // get face up and unmatched tiles
-  const faceUpTiles = tileApp.findFaceUpTiles(tileApp.tiles);
-  const faceUpUnmatchedTiles = tileApp.findUnmatchedTiles(faceUpTiles);
-
-  // if >1 tile face up...
-  if (faceUpUnmatchedTiles.length > 1) {
-    // if they match, mark them as matched
-    if (tileApp.isMatch(faceUpUnmatchedTiles)) {
-      tileApp.matchTiles(faceUpUnmatchedTiles);
-    } else {
-      // flip them back down
-      tileApp.flipTilesDown(faceUpUnmatchedTiles);
+// Start Timer Function
+function startTimer() {
+    if (!nIntervId) {
+        nIntervId = setInterval(() => {
+            timer++;
+            timeDisplay.textContent = timer;
+        }, 1000);
     }
-    // render tiles with time delay effect
-    (async () => {
-      await sleep(800);
-      renderTiles(grid, tileApp.tiles);
-    })();
-  }
+}
 
-  // start timer
-  if (nIntervId === null) {
-    nIntervId = setInterval(() => {
-      timer += 1;
-      timeDisplay.textContent = timer;
-    }, 1000);
-  }
+// Handle Tile Click
+let flippedTiles = [];
+function handleTileClick(event) {
+    const tile = event.target;
+    if (tile.classList.contains("matched") || flippedTiles.length === 2) return;
 
-  // if all tiles matched, show congrats message, with replay button
-  const unmatchedTiles = tileApp.findUnmatchedTiles(tileApp.tiles);
-  // console.log(unmatchedTiles.length);
-  if (unmatchedTiles.length === 0) {
+    tile.textContent = tile.dataset.symbol; 
+    flippedTiles.push(tile);
+
+    if (flippedTiles.length === 2) {
+        guesses++;
+        guessesDisplay.textContent = guesses;
+        checkMatch();
+    }
+
+    startTimer(); 
+}
+
+// Check for Match
+function checkMatch() {
+    const [tile1, tile2] = flippedTiles;
+    if (tile1.dataset.symbol === tile2.dataset.symbol) {
+        tile1.classList.add("matched");
+        tile2.classList.add("matched");
+    } else {
+        setTimeout(() => {
+            tile1.textContent = "❔";
+            tile2.textContent = "❔";
+        }, 800);
+    }
+    flippedTiles = [];
+}
+
+// Reset Game Function
+function resetMatchingGame() {
     clearInterval(nIntervId);
-    modalTimeValue.textContent = timer;
-    modalGuessesValue.textContent = guesses;
-    confetti();
-    confetti();
-    (async () => {
-      await sleep(1000);
-      $('#congrats-modal').modal('show');
-    })();
-  }
+    nIntervId = null;
+    timer = 0;
+    timeDisplay.textContent = 0;
+    guesses = 0;
+    guessesDisplay.textContent = guesses;
+
+    // Reset board
+    renderTiles();
+
+    // Hide Reset Modal
+    matchingGameResetModal.style.display = "none";
+}
+
+// Show Reset Confirmation Modal
+restartBtn.addEventListener("click", () => {
+    matchingGameResetModal.style.display = "flex"; // Show modal
 });
 
-// click on play again button
-playAgainBtn.addEventListener(`click`, () => {
-  const event = new MouseEvent('click');
-  restartBtn.dispatchEvent(event);
-  $('#congrats-modal').modal('hide');
+// Confirm Reset
+confirmMatchingGameResetButton.addEventListener("click", resetMatchingGame);
+
+// Cancel Reset
+cancelMatchingGameResetButton.addEventListener("click", () => {
+    matchingGameResetModal.style.display = "none"; // Hide modal
 });
+
+// Initialize Game on Load
+renderTiles();
+startTimer();
