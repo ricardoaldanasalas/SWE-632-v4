@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <body>
-        <header>
-            <div>
-                <h1><a href="index.html" class="btn">🎮</a>Mini Games Hub</h1>
-                <p>SWE-632 class Spring 2025</p>
-                <p>Play fun, simple games directly in your browser! Click the Controller to go back to game selection.</p>
-                </div>
-        </header> 
-        <p>Pending page</p>
-    </body>
-</html> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/styles-login-signup.css">
+</head>
+<body>
+
+<header>
+    <div>
+        <a href="index.html">
+            <img src="assets/home-icon.png" alt="">
+        </a>
+    </div>
+    <h1>Welcome Back</h1>
+</header>
+
+<div class="login-container">
+    <div class="login-card">
+        <h2>Login</h2>
+        <form action="index.html" method="GET">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="auth-btn">Login</button>
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
