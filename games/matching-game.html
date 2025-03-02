@@ -21,6 +21,7 @@
 
     <!-- Game Title & Instructions -->
     <h1>Matching Game</h1>
+    <p>Select two tiles to see if they match. If they don't, the tiles will flip back. Try to match each pair as quick as you can or in the least amount of tries.</p>
     <p>Click on tiles to find matching pairs!</p>
     
     <!-- Game Board -->
@@ -29,6 +30,16 @@
     <!-- Game Info -->
     <p>Time: <span id="timeDisplay">0</span> seconds</p>
     <p>Guesses: <span id="guessesDisplay">0</span></p>
+
+    <!-- Win modal -->
+
+    <div id="rpsWinModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p id="rpsWinMessage"></p>
+            <button id="rpsPlayAgain" onclick="resetMatchingGame()">Play Again</button>
+            <button id="rpsGoHome" onclick="goHome()">Go to Homepage</button>
+        </div>
+    </div>
 
     <!-- Restart Game Button -->
     <button id="restartBtn">Restart Game</button>

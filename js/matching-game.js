@@ -1,6 +1,7 @@
 // Game Variables
 let timer = 0;
 let guesses = 0;
+let totalMatches = 0;
 let nIntervId = null;
 const timeDisplay = document.getElementById("timeDisplay");
 const guessesDisplay = document.getElementById("guessesDisplay");
@@ -70,8 +71,15 @@ function handleTileClick(event) {
 function checkMatch() {
     const [tile1, tile2] = flippedTiles;
     if (tile1.dataset.symbol === tile2.dataset.symbol) {
+        totalMatches++;
+        console.log(totalMatches);
         tile1.classList.add("matched");
         tile2.classList.add("matched");
+        
+        if (totalMatches === 8) {
+            rpsWinMessage.textContent = "🎉 You won the game!";
+            rpsWinModal.style.display = "flex"; // Show modal pop-up
+        }
     } else {
         setTimeout(() => {
             tile1.textContent = "❔";
@@ -86,6 +94,7 @@ function resetMatchingGame() {
     clearInterval(nIntervId);
     nIntervId = null;
     timer = 0;
+    totalMatches = 0;
     timeDisplay.textContent = 0;
     guesses = 0;
     guessesDisplay.textContent = guesses;
@@ -95,6 +104,9 @@ function resetMatchingGame() {
 
     // Hide Reset Modal
     matchingGameResetModal.style.display = "none";
+    // Hide both modals when the game resets
+    rpsWinModal.style.display = "none";
+    rpsResetModal.style.display = "none";
 }
 
 // Show Reset Confirmation Modal
@@ -109,6 +121,11 @@ confirmMatchingGameResetButton.addEventListener("click", resetMatchingGame);
 cancelMatchingGameResetButton.addEventListener("click", () => {
     matchingGameResetModal.style.display = "none"; // Hide modal
 });
+
+// Navigate back to the home page
+function goHome() {
+    window.location.href = "../index.html"; 
+}
 
 // Initialize Game on Load
 renderTiles();
