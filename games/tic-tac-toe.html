@@ -8,9 +8,9 @@
 </head>
 <body>
     <header>
-            <div class="header-left">
-                <a href="../index.html"><img src="../assets/home-icon-2.webp" alt="Home Icon"></a>
-            </div>
+        <div class="header-left">
+            <a href="#" id="homeButton"><img src="../assets/home-icon-2.webp" alt="Home Icon"></a>
+        </div>
             <div class="header-center">
                 <h1>Mini Games Hub</h1>
                 <p>SWE-632 class Spring 2025</p>
@@ -51,6 +51,21 @@
             <p>Are you sure you want to reset the game?</p>
             <button id="confirmTicTacToeReset">Yes, Reset</button>
             <button id="cancelTicTacToeReset">No, Keep Playing</button>
+        </div>
+    </div>
+    <!-- Game Start Modal -->
+    <div id="gameStartModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p>Tic-Tac-Toe is a two-player game. Player X goes first.</p>
+            <button id="startGameBtn">OK</button>
+        </div>
+    </div>
+    <!-- Home Confirmation Modal -->
+    <div id="homeConfirmModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p>Are you sure you want to quit and go back to the home page?</p>
+            <button id="confirmHome" class="rps-btn rps-reset">Yes</button>
+            <button id="cancelHome" class="rps-btn rps-go-home">No</button>
         </div>
     </div>
     <script src="../js/tic-tac-toe.js"></script>

@@ -9,8 +9,9 @@
 <body>
     <header>
         <div class="header-left">
-            <a href="../index.html"><img src="../assets/home-icon-2.webp" alt="Home Icon"></a>
+            <a href="#" id="homeButton"><img src="../assets/home-icon-2.webp" alt="Home Icon"></a>
         </div>
+    
         <div class="header-center">
             <h1>Mini Games Hub</h1>
             <p>SWE-632 class Spring 2025</p>
@@ -19,16 +20,18 @@
     </header>
 
     <h1>Rock-Paper-Scissors</h1>
+    <h2 id="turnIndicator">Player 1's Turn</h2>
     <p>Select rock, paper, or scissors. Rock beats scissors, scissors beats paper, and paper beats rock.</p>
     <p>First to 5 wins!</p>
-    <button onclick="playGame('rock')">Rock</button>
-    <button onclick="playGame('paper')">Paper</button>
-    <button onclick="playGame('scissors')">Scissors</button>
+    <button class="rps-btn rps-choice" onclick="playGame('rock')">Rock</button>
+    <button class="rps-btn rps-choice" onclick="playGame('paper')">Paper</button>
+    <button class="rps-btn rps-choice" onclick="playGame('scissors')">Scissors</button>
+    
 
     <h2 id="result"></h2>
     <p>Player Score: <span id="playerScore">0</span></p>
     <p>Computer Score: <span id="computerScore">0</span></p>
-    <button id="rpsResetButton">Reset Game</button>
+    <button id="rpsResetButton" class="rps-btn rps-reset">Reset Game</button>
 
     <div id="rpsWinModal" class="rps-modal">
         <div class="rps-modal-content">
@@ -45,6 +48,25 @@
             <button id="cancelReset">No, Keep Playing</button>
         </div>
     </div>
+
+    <!-- Home Confirmation Modal -->
+  <div id="homeConfirmModal" class="rps-modal">
+    <div class="rps-modal-content">
+        <p>Are you sure you want to quit and go back to the home page?</p>
+        <button id="confirmHome" class="rps-btn rps-reset">Yes</button>
+        <button id="cancelHome" class="rps-btn rps-go-home">No</button>
+    </div>
+  </div>
+
+    <!-- Game Mode Selection Modal -->
+    <div id="rpsGameModeModal" class="rps-modal">
+        <div class="rps-modal-content">
+            <p>Would you like to play against the Computer or Another Player?</p>
+            <button id="playVsComputer">Play vs Computer</button>
+            <button id="playVsPlayer">Play vs Player</button>
+        </div>
+    </div>
+
 
     <script src="../js/rock-paper-scissors.js"></script>
 </body>

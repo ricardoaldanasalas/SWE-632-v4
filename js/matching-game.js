@@ -130,3 +130,24 @@ function goHome() {
 // Initialize Game on Load
 renderTiles();
 startTimer();
+// Home button and modal elements
+const homeButton = document.getElementById("homeButton");
+const homeConfirmModal = document.getElementById("homeConfirmModal");
+const confirmHome = document.getElementById("confirmHome");
+const cancelHome = document.getElementById("cancelHome");
+
+// Show confirmation modal when home button is clicked
+homeButton.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent immediate navigation
+    homeConfirmModal.style.display = "flex";
+});
+
+// If user confirms, go to homepage
+confirmHome.addEventListener("click", function () {
+    window.location.href = "../index.html"; // Adjusted path for mini-games
+});
+
+// If user cancels, hide the modal
+cancelHome.addEventListener("click", function () {
+    homeConfirmModal.style.display = "none";
+});
