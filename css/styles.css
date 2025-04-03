@@ -440,16 +440,19 @@ footer {
 
 /* General Button Styling */
 .rps-btn {
-    display: inline-block;
-    margin: 10px;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-transform: uppercase;
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
     cursor: pointer;
+    background-color: #007bff;
+    color: white;
     border: none;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+#rrps-btn:hover {
+    background-color: #0056b3;
 }
 
 /* Rock-Paper-Scissors Choice Buttons */
@@ -465,12 +468,12 @@ footer {
 
 /* Reset Game Button */
 .rps-reset {
-    background-color: #ff9800; /* Orange */
+    background-color: #007bff;
     color: white;
 }
 
 .rps-reset:hover {
-    background-color: #e68900;
+    background-color: #007bff;
     transform: scale(1.1);
 }
 
@@ -494,4 +497,9 @@ footer {
 .rps-go-home:hover {
     background-color: #b30000;
     transform: scale(1.1);
+}
+
+.rps-click-effect:active {
+    transform: scale(0.95);
+    background-color: #0069d9;
 }

@@ -18,5 +18,13 @@ function openModal(game) {
 }
 
 function closeModal() {
-    document.getElementById("instruction-modal").style.display = "none";
+    const modal = document.getElementById("instruction-modal");
+    modal.style.display = "none";
 }
+
+window.addEventListener("click", function (event) {
+    const modal = document.getElementById("instruction-modal");
+    if (event.target === modal) {
+        closeModal();
+    }
+});
