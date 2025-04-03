@@ -157,3 +157,6 @@ if (cancelResetButton) {
     cancelResetButton.addEventListener("click", cancelReset);
 }
 
+function confirmRpsReset() {
+    rpsResetModal.style.display = "flex";
+}
