@@ -13,6 +13,14 @@ header {
     color: white;
     padding: 20px;
     margin-bottom: 20px;
+
+    /*fix Login and Sign up overlapping with homepage title issue */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    flex-wrap: wrap;  
 }
 
 h1 {
@@ -23,7 +31,7 @@ h1 {
 .header-left {
     position: absolute;
     left: 10px;  /* Adjust position of home icon in the left corner */
-    top: 10%;
+    top: 40%;
     left: 2%;
     transform: translateY(-65%);
 }
@@ -33,6 +41,54 @@ h1 {
     height: auto; /* Keep aspect ratio of the image */
 }
 
+/* fix button title overlapping issue */
+header .header-left,
+header .header-center,
+header .auth-buttons {
+    flex: 1 1 30%; /* Default widths for larger screens */
+    text-align: center;
+}
+
+header .header-left {
+    text-align: left;
+}
+
+header .header-center {
+    flex: 2 1 40%; /* Center section takes more space */
+    text-align: center;
+}
+
+header .auth-buttons {
+    text-align: right;
+}
+
+/* Mobile-specific Fixes (max-width: 768px) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack the header elements vertically */
+        align-items: flex-start; /* Align elements to the start */
+        padding: 15px; /* Reduce padding for better spacing */
+    }
+
+    header .header-left,
+    header .header-center,
+    header .auth-buttons {
+        flex: 1 1 100%; /* Allow all sections to take 100% of the width */
+        text-align: center; /* Center-align the text */
+    }
+
+    header .auth-buttons {
+        margin-top: 10px; /* Add spacing between auth buttons and the other elements */
+    }
+
+    header h1 {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+
+    header p {
+        font-size: 14px; /* Reduce the font size for mobile */
+    }
+}
 
 
 /* Game Container */
