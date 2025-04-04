@@ -66,7 +66,7 @@ header .auth-buttons {
 @media (max-width: 768px) {
     header {
         flex-direction: column; /* Stack the header elements vertically */
-        align-items: flex-start; /* Align elements to the start */
+        align-items: center; /* Center align the elements */
         padding: 15px; /* Reduce padding for better spacing */
     }
 
@@ -78,9 +78,14 @@ header .auth-buttons {
     }
 
     header .auth-buttons {
-        margin-top: 10px; /* Add spacing between auth buttons and the other elements */
+        margin-top: -15px; /* Add spacing between auth buttons and the other elements */
+        display:flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 10px;
     }
 
+    /* Optional: Adjust the font size for smaller screens */
     header h1 {
         font-size: 20px; /* Adjust font size for smaller screens */
     }
@@ -88,8 +93,19 @@ header .auth-buttons {
     header p {
         font-size: 14px; /* Reduce the font size for mobile */
     }
-}
 
+    /* Adjust .header-left image for mobile */
+    .header-left img {
+        width: 50px; /* Make the home icon smaller on mobile */
+        height: auto;
+    }
+
+    /* Optional: Adjust spacing of the home icon for better alignment */
+    .header-left {
+        margin-left: 10px;
+        margin-top: -10px;
+    }
+}
 
 /* Game Container */
 .game-container {
